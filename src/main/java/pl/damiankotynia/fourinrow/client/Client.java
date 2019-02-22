@@ -2,6 +2,8 @@ package pl.damiankotynia.fourinrow.client;
 
 import pl.damiankotynia.fourinrow.client.connector.OutboundConnection;
 import pl.damiankotynia.fourinrow.client.connector.ResponseListener;
+import pl.damiankotynia.fourinrow.model.MessageRequest;
+import pl.damiankotynia.fourinrow.model.RequestType;
 
 import java.io.IOException;
 
@@ -26,6 +28,10 @@ public class Client implements Runnable {
 
     @Override
     public void run() {
+        MessageRequest qwe = new MessageRequest();
+        qwe.setMessage("qwe");
+        qwe.setRequestType(RequestType.MESSAGE);
+        outboundConnection.writeObject(qwe);
         while (isRunning) {
 
 

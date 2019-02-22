@@ -48,7 +48,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>pl.damiankotynia.fourinrow.client.Main</mainClass>
+                            <mainClass>pl.damiankotynia.fourinrow.client.MainApp</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

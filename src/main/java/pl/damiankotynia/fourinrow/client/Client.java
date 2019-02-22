@@ -13,6 +13,7 @@ public class Client implements Runnable {
     private ResponseListener responseListener;
     private int port = 4444;
     private String serverAddress = "localhost";
+    private MainApp mainApp;
 
     public Client(){
         this.isRunning = true;
@@ -26,12 +27,14 @@ public class Client implements Runnable {
         }
     }
 
+    public void setMainApp(MainApp mainApp) {
+        this.mainApp = mainApp;
+    }
+
     @Override
     public void run() {
-        MessageRequest qwe = new MessageRequest();
-        qwe.setMessage("qwe");
-        qwe.setRequestType(RequestType.MESSAGE);
-        outboundConnection.writeObject(qwe);
+        MessageRequest qwe = new MessageRequest(mainApp.getPlayer());
+
         while (isRunning) {
 
 
@@ -40,4 +43,10 @@ public class Client implements Runnable {
     public boolean isRunning() {
         return isRunning;
     }
+
+    public OutboundConnection getOutboundConnection() {
+        return outboundConnection;
+    }
+
+
 }

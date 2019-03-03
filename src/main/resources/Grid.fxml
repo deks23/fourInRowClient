@@ -28,13 +28,13 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" text="Hit" GridPane.rowIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" text="Hit" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Button mnemonicParsing="false" text="Hit" GridPane.columnIndex="2" GridPane.rowIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-            <Button mnemonicParsing="false" text="Hit" GridPane.columnIndex="3" GridPane.rowIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-            <Button mnemonicParsing="false" text="Hit" GridPane.columnIndex="4" GridPane.rowIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-            <Button mnemonicParsing="false" text="Hit" GridPane.columnIndex="5" GridPane.rowIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
-            <Button mnemonicParsing="false" text="Hit" GridPane.columnIndex="6" GridPane.rowIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER"/>
+            <Button fx:id="button1" mnemonicParsing="false" onAction="#button1Click" text="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+            <Button contentDisplay="CENTER" mnemonicParsing="false" text="Hit" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" text="Hit" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" text="Hit" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" text="Hit" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" text="Hit" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" text="Hit" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>

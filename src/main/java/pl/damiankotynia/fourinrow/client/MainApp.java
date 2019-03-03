@@ -21,8 +21,8 @@ public class MainApp extends Application {
     private AnchorPane gridView;
     private AnchorPane chatView;
 
-    private ChatController chatController;
-    private GridController gridController;
+    public  ChatController chatController;
+    public GridController gridController;
     private Client client;
 
     public static void main(String[] args) {
@@ -88,6 +88,14 @@ public class MainApp extends Application {
         return player;
     }
 
+    public void setChatController(ChatController chatController) {
+        this.chatController = chatController;
+    }
+
+    public ChatController getChatController() {
+        return chatController;
+    }
+
     public Client getClient() {
         return client;
     }
@@ -109,5 +117,6 @@ public class MainApp extends Application {
         request.setRequestType(RequestType.FIND_GAME);
         request.setPlayer(player);
         client.getOutboundConnection().writeObject(request);
+        client.getOutboundConnection().getResponseListener().setMainApp(this);
     }
 }

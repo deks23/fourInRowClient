@@ -1,8 +1,9 @@
 package pl.damiankotynia.fourinrow.client.connector;
 
+import pl.damiankotynia.fourinrow.client.MainApp;
+import pl.damiankotynia.fourinrow.model.MessageResponse;
+import pl.damiankotynia.fourinrow.model.Response;
 
-
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import static pl.damiankotynia.fourinrow.client.service.Utils.INBOUND_CONNECTION_LOGGER;
@@ -10,6 +11,7 @@ import static pl.damiankotynia.fourinrow.client.service.Utils.INBOUND_CONNECTION
 public class ResponseListener implements Runnable {
     private ObjectInputStream inputStream;
     private boolean isRunning;
+    private MainApp mainApp;
 
     public ResponseListener(ObjectInputStream inputStream) {
         this.inputStream = inputStream;
@@ -19,13 +21,25 @@ public class ResponseListener implements Runnable {
     @Override
     public void run() {
         while (isRunning) {
-
-
-
             try {
 
-                inputStream.readObject();
+                Object  objectResponse = inputStream.readObject();
                 System.out.println(INBOUND_CONNECTION_LOGGER + " recieved object ");
+                Response response = (Response) objectResponse;
+                switch (response.getResponseStatus()){
+                    case MESSAGE:
+                        mainApp.getChatController().updateMessages(((MessageResponse)response).getMessage());
+                        break;
+                    case MOVE:
+
+                        break;
+
+                    case OPONENT_DISCONECTED:
+                        //TODO zapytanie czy
+                        break;
+
+                }
+
 
             } catch (IOException e) {
                 System.out.println("\n Błąd serwera. Kończę działanie aplikacji \n");
@@ -38,6 +52,9 @@ public class ResponseListener implements Runnable {
         }
     }
 
+    public void setMainApp(MainApp mainApp){
+        this.mainApp = mainApp;
+    }
 
 
 }

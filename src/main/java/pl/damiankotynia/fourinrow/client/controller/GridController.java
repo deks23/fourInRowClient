@@ -55,6 +55,7 @@ public class GridController {
     public void disableButtons(){
         for(Button button : buttons){
             button.setDisable(true);
+
         }
     }
 
@@ -66,7 +67,7 @@ public class GridController {
 
     @FXML
     public void button1Click(){
-
+        System.out.println(button1.getText());
     }
 
     @FXML

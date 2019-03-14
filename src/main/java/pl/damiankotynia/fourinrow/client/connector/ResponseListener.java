@@ -24,8 +24,8 @@ public class ResponseListener implements Runnable {
             try {
 
                 Object  objectResponse = inputStream.readObject();
-                System.out.println(INBOUND_CONNECTION_LOGGER + " recieved object ");
                 Response response = (Response) objectResponse;
+                System.out.println(INBOUND_CONNECTION_LOGGER + " recieved object " + response.getResponseStatus());
                 switch (response.getResponseStatus()){
                     case MESSAGE:
                         mainApp.getChatController().updateMessages(((MessageResponse)response).getMessage());
@@ -35,7 +35,16 @@ public class ResponseListener implements Runnable {
                         break;
 
                     case OPONENT_DISCONECTED:
-                        //TODO zapytanie czy
+                        mainApp.chatController.disableSendMessageButton();
+                        mainApp.gridController.disableButtons();
+                        mainApp.chatController.updateMessages("Oponent disconnected");
+                        //TODO aktywacja przycisku szukaj przeciwnika
+                        break;
+
+                    case START:
+                        mainApp.chatController.cleanChatWindow();
+                        mainApp.chatController.enableSendMessageButton();
+                        mainApp.gridController.enableButtons();
                         break;
 
                 }

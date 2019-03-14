@@ -1,11 +1,13 @@
 package pl.damiankotynia.fourinrow.client.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import pl.damiankotynia.fourinrow.client.MainApp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GridController {
@@ -36,14 +38,7 @@ public class GridController {
     }
 
     public GridController() {
-        buttons = new ArrayList<>();
-        buttons.add(button1);
-        buttons.add(button2);
-        buttons.add(button3);
-        buttons.add(button4);
-        buttons.add(button5);
-        buttons.add(button6);
-        buttons.add(button7);
+
     }
 
     public void setMainApp(MainApp mainApp) {
@@ -52,6 +47,29 @@ public class GridController {
 
     }
 
+    private void performMove(int row){
+        //TODO wykonanie ruchu
+        System.out.println("move" + row);
+    }
+
+    public void initButtons(){
+        buttons = new ArrayList<>();
+        buttons.add(button1);
+        buttons.add(button2);
+        buttons.add(button3);
+        buttons.add(button4);
+        buttons.add(button5);
+        buttons.add(button6);
+        buttons.add(button7);
+
+        buttons.stream().forEach(button -> {
+            button.setOnAction(event -> {
+                Button clickedButton = (Button)event.getSource();
+                performMove(Integer.valueOf(clickedButton.getText()));
+            });
+        });
+
+    }
     public void disableButtons(){
         for(Button button : buttons){
             button.setDisable(true);
@@ -65,38 +83,5 @@ public class GridController {
         }
     }
 
-    @FXML
-    public void button1Click(){
-        System.out.println(button1.getText());
-    }
 
-    @FXML
-    public void button2Click(){
-
-    }
-
-    @FXML
-    public void button3Click(){
-
-    }
-
-    @FXML
-    public void button4Click(){
-
-    }
-
-    @FXML
-    public void button5Click(){
-
-    }
-
-    @FXML
-    public void button6Click(){
-
-    }
-
-    @FXML
-    public void button7Click(){
-
-    }
 }

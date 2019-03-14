@@ -1,6 +1,7 @@
 package pl.damiankotynia.fourinrow.client;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -64,7 +65,7 @@ public class MainApp extends Application {
             chatView = (AnchorPane) loader2.load();
             chatController = loader2.getController();
             chatController.setMainApp(this);
-
+            chatController.disableSendMessageButton();
 
         }catch (IOException e){
             e.printStackTrace();
@@ -78,7 +79,7 @@ public class MainApp extends Application {
 
     public void showGame() {
         rootLayout.setLeft(gridView);
-
+        gridController.initButtons();
     }
         public Stage getPrimaryStage(){
         return primaryStage;
@@ -100,6 +101,8 @@ public class MainApp extends Application {
         return client;
     }
 
+
+
     @Override
     public void start(Stage primaryStage) {
 
@@ -111,6 +114,7 @@ public class MainApp extends Application {
         loadFXML();
         showChat();
         showGame();
+        gridController.disableButtons();
         player = new Player();
         client = new Client();
         Request request = new Request(player);
@@ -118,5 +122,10 @@ public class MainApp extends Application {
         request.setPlayer(player);
         client.getOutboundConnection().writeObject(request);
         client.getOutboundConnection().getResponseListener().setMainApp(this);
+
+        primaryStage.setOnCloseRequest(t -> {
+            Platform.exit();
+            System.exit(0);
+        });
     }
 }

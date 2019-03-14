@@ -62,4 +62,18 @@ public class ChatController {
         chatOutput.setText(messageViewBuilder.toString());
     }
 
+    public void disableSendMessageButton(){
+        send.setDisable(true);
+    }
+
+    public void enableSendMessageButton(){
+        send.setDisable(false);
+    }
+
+    public void cleanChatWindow(){
+        messageViewBuilder = new StringBuilder();
+        chatOutput.clear();
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package pl.damiankotynia.fourinrow.client.connector;
 
+import pl.damiankotynia.fourinrow.model.Request;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -50,7 +52,7 @@ public class OutboundConnection {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(OUTBOUND_CONNECTION_LOGGER + " sending " );
+        System.out.println(OUTBOUND_CONNECTION_LOGGER + " sending " + ((Request)object).getRequestType());
         try {
             outputStream.writeObject(object);
         } catch (IOException e) {

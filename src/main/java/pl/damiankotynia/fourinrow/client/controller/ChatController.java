@@ -2,12 +2,12 @@ package pl.damiankotynia.fourinrow.client.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.text.TextFlow;
 import pl.damiankotynia.fourinrow.client.MainApp;
+import pl.damiankotynia.fourinrow.client.service.Utils;
 import pl.damiankotynia.fourinrow.model.MessageRequest;
+import pl.damiankotynia.fourinrow.model.Request;
 import pl.damiankotynia.fourinrow.model.RequestType;
 
 public class ChatController {
@@ -22,6 +22,8 @@ public class ChatController {
     @FXML
     private Button send;
 
+    @FXML
+    private Button findGame;
 
     private MainApp mainApp;
 
@@ -56,6 +58,16 @@ public class ChatController {
         }
     }
 
+    @FXML
+    public void findGame() {
+        disableFindGameButton();
+        Request request = new Request(mainApp.getPlayer());
+        request.setRequestType(RequestType.FIND_GAME);
+        mainApp.getClient().getOutboundConnection().writeObject(request);
+        disableFindGameButton();
+        updateMessages(Utils.WAITING_FOR_OPPONENT);
+    }
+
     public void updateMessages(String message){
         messageViewBuilder.append(message);
         messageViewBuilder.append("\n");
@@ -70,10 +82,18 @@ public class ChatController {
         send.setDisable(false);
     }
 
+
+    public void disableFindGameButton(){
+        findGame.setDisable(true);
+    }
+
+    public void enableFindGameButton(){
+        findGame.setDisable(false);
+    }
+
     public void cleanChatWindow(){
         messageViewBuilder = new StringBuilder();
         chatOutput.clear();
     }
-
 
 }

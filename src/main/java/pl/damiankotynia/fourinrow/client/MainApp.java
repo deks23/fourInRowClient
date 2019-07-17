@@ -9,6 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import pl.damiankotynia.fourinrow.client.controller.ChatController;
 import pl.damiankotynia.fourinrow.client.controller.GridController;
+import pl.damiankotynia.fourinrow.client.service.MoveService;
 import pl.damiankotynia.fourinrow.model.*;
 
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class MainApp extends Application {
     public  ChatController chatController;
     public GridController gridController;
     private Client client;
+    private MoveService moveService;
 
     public static void main(String[] args) {
         launch(args);
@@ -66,7 +68,7 @@ public class MainApp extends Application {
             chatController = loader2.getController();
             chatController.setMainApp(this);
             chatController.disableSendMessageButton();
-
+            chatController.disableSendMessageButton();
         }catch (IOException e){
             e.printStackTrace();
         }
@@ -101,28 +103,30 @@ public class MainApp extends Application {
         return client;
     }
 
+    public MoveService getMoveService() {
+        return moveService;
+    }
 
+    public void setMoveService(MoveService moveService) {
+        this.moveService = moveService;
+    }
 
     @Override
     public void start(Stage primaryStage) {
-
+        player = new Player();
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Four in row ");
-
         new Thread(client).start();
+
         initRootLayout();
         loadFXML();
         showChat();
         showGame();
         gridController.disableButtons();
-        player = new Player();
-        client = new Client();
-        Request request = new Request(player);
-        request.setRequestType(RequestType.FIND_GAME);
-        request.setPlayer(player);
-        client.getOutboundConnection().writeObject(request);
-        client.getOutboundConnection().getResponseListener().setMainApp(this);
 
+
+        client = new Client();
+        client.getOutboundConnection().getResponseListener().setMainApp(this);
         primaryStage.setOnCloseRequest(t -> {
             Platform.exit();
             System.exit(0);

@@ -5,10 +5,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="351.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.damiankotynia.fourinrow.client.controller.ChatController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="351.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.damiankotynia.fourinrow.client.controller.ChatController">
    <children>
-      <TextField fx:id="chatInput" layoutX="14.0" layoutY="327.0" prefHeight="27.0" prefWidth="214.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="100.0" />
-      <Button fx:id="send" layoutX="272.0" layoutY="358.0" mnemonicParsing="false" onMouseClicked="#sendMessage" text="Send" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="20.0" />
-      <TextArea fx:id="chatOutput" disable="true" layoutX="76.0" layoutY="78.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <TextField fx:id="chatInput" layoutY="388.0" prefHeight="27.0" prefWidth="214.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="105.0" />
+      <Button fx:id="send" layoutX="281.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#sendMessage" text="Send" AnchorPane.bottomAnchor="42.0" AnchorPane.rightAnchor="20.0" />
+      <TextArea fx:id="chatOutput" disable="true" layoutX="76.0" layoutY="78.0" prefHeight="358.0" prefWidth="331.0" AnchorPane.bottomAnchor="89.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button fx:id="findGame" layoutX="146.0" layoutY="433.0" mnemonicParsing="false" onAction="#findGame" text="Find Game" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="146.0" />
    </children>
 </AnchorPane>
